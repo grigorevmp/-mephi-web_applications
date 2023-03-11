@@ -1,0 +1,1 @@
+Прочитать больше о GORM: https://gorm.io/ru_RU/docs/models.html
