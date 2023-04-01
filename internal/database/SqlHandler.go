@@ -11,7 +11,7 @@ type SqlHandler struct {
 }
 
 func NewSqlHandler() interfaces.SqlHandler {
-	dsn := "host=localhost user=postgres password=admin dbname=postgres port=5432 sslmode=disable"
+	dsn := "host=db user=dev password=dev dbname=test_db port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

@@ -18,3 +18,7 @@
 1) Build with `.../go.exe build ...\cmd\main.go`
 2) Run `main.exe`
 
+
+### Start with docker-compose
+
+`docker-compose up`
