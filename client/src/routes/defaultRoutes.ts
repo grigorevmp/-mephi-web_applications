@@ -5,11 +5,11 @@ export const defaultRoutes = {
     users: {
         path: '/users',
         title: 'Пользователи',
-        component: UsersPage(),
+        component: UsersPage,
     },
     examCards: {
         path: '/exam-cards',
         title: 'Карточки экзаменов',
-        component: ExamCardsPage(),
+        component: ExamCardsPage,
     },
 };

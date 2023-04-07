@@ -20,7 +20,7 @@ function App() {
                         <Route
                             key={`route-${route.path}`}
                             path={route.path}
-                            element={route.component} />
+                            element={route.component()} />
                     )}
                     <Route
                         path="*"

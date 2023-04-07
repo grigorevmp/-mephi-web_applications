@@ -1,5 +1,6 @@
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import Button from '@mui/material/Button';
+import LinearProgress from '@mui/material/LinearProgress';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -8,14 +9,19 @@ import type { User } from 'api';
 
 type UsersListProps = {
     users: User[];
+    loading?: boolean;
 }
 
 export function UsersList(props: UsersListProps) {
-    const { users } = props;
+    const { users, loading } = props;
+
+    if (loading) {
+        return <LinearProgress color="inherit" />;
+    }
 
     return (
         <List aria-label="Список пользователей">
-            {users.map((user, i) => (
+            {users.map((user) => (
                 <ListItem
                     key={user.id}
                     secondaryAction={

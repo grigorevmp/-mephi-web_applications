@@ -1,26 +1,20 @@
+import Stack from '@mui/material/Stack';
 import React from 'react';
-import type { User } from 'api';
+import { useUsers } from 'api';
 import { UserForm } from './modules/UserForm';
 import { UsersList } from './components/UsersList';
 
-const users: User[] = [
-    {
-        id: 1,
-        name: 'Petya',
-        group: 'M22-512'
-    },
-    {
-        id: 2,
-        name: 'Slava',
-        group: 'M22-512'
-    }
-]
-
 export function UsersPage() {
+    const { data, loading } = useUsers({});
+
     return (
         <main>
-            <UserForm />
-            <UsersList users={users} />
+            <Stack spacing="12px">
+                <UserForm />
+                <UsersList
+                    users={data || []}
+                    loading={loading} />
+            </Stack>
         </main>
     );
 }
