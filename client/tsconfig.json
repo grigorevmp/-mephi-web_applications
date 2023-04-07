@@ -31,8 +31,9 @@
     "baseUrl": "./src",                                  /* Specify the base directory to resolve non-relative module names. */
     "paths": {
       "api": ["api"],
-      "layout": ["layout"],
       "routes": ["routes"],
+      "theme": ["theme"],
+      "layout": ["layout"],
       "pages": ["pages"],
     },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */

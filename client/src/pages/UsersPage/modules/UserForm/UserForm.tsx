@@ -1,3 +1,4 @@
+import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
@@ -53,9 +54,10 @@ export function UserForm() {
                 </Stack>
                 <Button
                     type="submit"
-                    variant="outlined"
+                    variant="contained"
+                    size="large"
                     disabled={!dirty}>
-                    Создать
+                    <AddIcon />
                 </Button>
             </Box>
         </form>

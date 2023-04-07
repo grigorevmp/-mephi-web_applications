@@ -1,11 +1,13 @@
+import { ThemeProvider } from '@mui/material';
 import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes }
     from 'react-router-dom';
-import { DefaultLayout } from 'layout/DefaultLayout';
 import { defaultRoutes } from 'routes';
+import { theme } from 'theme';
+import { DefaultLayout } from 'layout/DefaultLayout';
 import { UsersPage } from 'pages/UsersPage';
 
-export function App() {
+function App() {
     return (
         <BrowserRouter>
             <DefaultLayout>
@@ -23,3 +25,13 @@ export function App() {
         </BrowserRouter>
     );
 }
+
+function AppWithContext() {
+    return (
+        <ThemeProvider theme={theme}>
+            <App />
+        </ThemeProvider>
+    )
+}
+
+export { AppWithContext as App };

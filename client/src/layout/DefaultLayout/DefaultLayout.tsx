@@ -17,7 +17,7 @@ export function DefaultLayout(props: React.PropsWithChildren) {
                 }}>
                 <Box
                     sx={{
-                        flexBasis: 250,
+                        flexBasis: 170,
                     }}>
                     <Navigation />
                 </Box>

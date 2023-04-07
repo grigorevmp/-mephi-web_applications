@@ -29,7 +29,8 @@ export function UsersPage() {
                     <ListItem
                         key={user.id}
                         secondaryAction={
-                            <Button>
+                            <Button
+                                size="large">
                                 <PersonRemoveIcon />
                             </Button>
                         }>
