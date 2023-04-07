@@ -13,6 +13,7 @@ module.exports = {
             api: path.resolve(__dirname, 'src/api'),
             layout: path.resolve(__dirname, 'src/layout'),
             routes: path.resolve(__dirname, 'src/routes'),
+            pages: path.resolve(__dirname, 'src/pages'),
         },
     },
     module: {

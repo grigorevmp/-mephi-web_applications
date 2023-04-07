@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes }
     from 'react-router-dom';
 import { DefaultLayout } from 'layout/DefaultLayout';
 import { defaultRoutes } from 'routes';
+import { UsersPage } from 'pages/UsersPage';
 
 export function App() {
     return (
@@ -16,7 +17,7 @@ export function App() {
                         } />
                     <Route
                         path={defaultRoutes.users}
-                        element="Users" />
+                        element={<UsersPage />} />
                 </Routes>
             </DefaultLayout>
         </BrowserRouter>
