@@ -10,8 +10,10 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
         alias: {
-            api: path.resolve(__dirname, 'src/api')
-        }
+            api: path.resolve(__dirname, 'src/api'),
+            layout: path.resolve(__dirname, 'src/layout'),
+            routes: path.resolve(__dirname, 'src/routes'),
+        },
     },
     module: {
         rules: [
