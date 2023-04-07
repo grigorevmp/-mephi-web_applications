@@ -5,7 +5,9 @@ import (
 	"NSA_example/internal/models"
 	"NSA_example/internal/transport"
 	"fmt"
+
 	"github.com/labstack/echo"
+	"github.com/labstack/echo/middleware"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -18,6 +20,7 @@ func (server *Server) Start() {
 	dbinit()
 	transport.Init()
 	e := echo.New()
+	e.Use(middleware.CORS())
 	e.Logger.Fatal(e.Start(config.ServerPort))
 }
 
