@@ -1,8 +1,20 @@
-import * as React from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes }
     from 'react-router-dom';
+import { useUserCreate } from 'api';
 
 export function App() {
+    const userCreateService = useUserCreate({
+        input: {
+            name: 'Sergey Yatsenko',
+            group: 'M22-512',
+        },
+    })
+
+    console.log({
+        userCreateService,
+    })
+
     return (
         <BrowserRouter>
             <Routes>
