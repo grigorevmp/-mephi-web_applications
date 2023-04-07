@@ -2,6 +2,7 @@ package database
 
 import (
 	"NSA_example/internal/database/interfaces"
+
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -11,7 +12,7 @@ type SqlHandler struct {
 }
 
 func NewSqlHandler() interfaces.SqlHandler {
-	dsn := "host=localhost user=postgres password=admin dbname=postgres port=5432 sslmode=disable"
+	dsn := "host=localhost user=postgres password=gev1He18 dbname=mephi_pp port=5432 sslmode=disable"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

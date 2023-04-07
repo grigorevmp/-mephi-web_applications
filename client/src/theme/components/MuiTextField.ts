@@ -5,6 +5,7 @@ export const MuiTextField = createTheme({
         MuiTextField: {
             defaultProps: {
                 size: 'small',
+                autoComplete: 'off',
             },
         },
     },

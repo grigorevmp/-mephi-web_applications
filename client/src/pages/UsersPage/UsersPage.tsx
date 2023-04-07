@@ -24,13 +24,14 @@ export function UsersPage() {
     return (
         <main>
             <UserForm />
-            <List>
+            <List aria-label="Список пользователей">
                 {users.map((user) => (
                     <ListItem
                         key={user.id}
                         secondaryAction={
                             <Button
-                                size="large">
+                                size="large"
+                                aria-label={`Удалить пользователя ${user.name}`}>
                                 <PersonRemoveIcon />
                             </Button>
                         }>

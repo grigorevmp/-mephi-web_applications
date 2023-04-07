@@ -12,7 +12,9 @@ export function Navigation() {
                     sx={{
                         height: 40,
                     }}>
-                    <Link to={defaultRoutes.users}>
+                    <Link
+                        to={defaultRoutes.users}
+                        aria-label='Пользователи'>
                         Пользователи
                     </Link>
                 </ListItem>

@@ -42,12 +42,14 @@ export function UserForm() {
                     direction="row"
                     spacing="8px">
                     <TextField
-                        placeholder='Введите имя'
+                        label="Имя пользователя"
+                        placeholder="Введите имя"
                         {...getFieldProps('name')}
                         error={!!getFieldMeta('name').error}
                         helperText={getFieldMeta('name').error} />
                     <TextField
-                        placeholder='Введите имя'
+                        label="Группа"
+                        placeholder='Введите группу'
                         {...getFieldProps('group')}
                         error={!!getFieldMeta('group').error}
                         helperText={getFieldMeta('group').error} />
@@ -56,7 +58,8 @@ export function UserForm() {
                     type="submit"
                     variant="contained"
                     size="large"
-                    disabled={!dirty}>
+                    disabled={!dirty}
+                    aria-label="Создать пользователя">
                     <AddIcon />
                 </Button>
             </Box>
