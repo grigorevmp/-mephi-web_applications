@@ -9,10 +9,7 @@ import (
 	"net/http"
 )
 
-func Init() {
-	// Echo instance
-	e := echo.New()
-
+func Init(e *echo.Echo) {
 	userController := controllers.NewUserController(database.NewSqlHandler())
 	examCardController := controllers.NewExamCardController(database.NewSqlHandler())
 	examController := controllers.NewExamController(database.NewSqlHandler())
