@@ -8,7 +8,10 @@ export function Navigation() {
     return (
         <nav>
             <List>
-                <ListItem>
+                <ListItem
+                    sx={{
+                        height: 40,
+                    }}>
                     <Link to={defaultRoutes.users}>
                         Пользователи
                     </Link>
