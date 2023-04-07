@@ -5,7 +5,6 @@ import { BrowserRouter, Navigate, Route, Routes }
 import { defaultRoutes } from 'routes';
 import { theme } from 'theme';
 import { DefaultLayout } from 'layout/DefaultLayout';
-import { UsersPage } from 'pages/UsersPage';
 
 function App() {
     return (
@@ -13,13 +12,16 @@ function App() {
             <DefaultLayout>
                 <Routes>
                     <Route
-                        path={defaultRoutes.home}
+                        path="/"
                         element={
-                            <Navigate to={defaultRoutes.users} />
+                            <Navigate to={defaultRoutes.users.path} />
                         } />
-                    <Route
-                        path={defaultRoutes.users}
-                        element={<UsersPage />} />
+                    {Object.values(defaultRoutes).map((route) =>
+                        <Route
+                            key={`route-${route.path}`}
+                            path={route.path}
+                            element={route.component} />
+                    )}
                     <Route
                         path="*"
                         element="Некорректный URL-адрес" />
