@@ -20,6 +20,9 @@ function App() {
                     <Route
                         path={defaultRoutes.users}
                         element={<UsersPage />} />
+                    <Route
+                        path="*"
+                        element="Некорректный URL-адрес" />
                 </Routes>
             </DefaultLayout>
         </BrowserRouter>
