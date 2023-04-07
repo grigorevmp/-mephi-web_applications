@@ -5,6 +5,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import * as React from 'react';
 import type { User } from 'api';
+import { UserForm } from './modules/UserForm';
 
 const users: User[] = [
     {
@@ -22,9 +23,11 @@ const users: User[] = [
 export function UsersPage() {
     return (
         <main>
+            <UserForm />
             <List>
                 {users.map((user) => (
                     <ListItem
+                        key={user.id}
                         secondaryAction={
                             <Button>
                                 <PersonRemoveIcon />
