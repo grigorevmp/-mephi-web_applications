@@ -44,6 +44,7 @@ export function UserForm() {
                     <TextField
                         label="Имя пользователя"
                         placeholder="Введите имя"
+                        required
                         {...getFieldProps('name')}
                         error={!!getFieldMeta('name').error}
                         helperText={getFieldMeta('name').error} />
