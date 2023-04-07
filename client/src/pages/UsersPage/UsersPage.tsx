@@ -1,11 +1,7 @@
-import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
-import Button from '@mui/material/Button';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import * as React from 'react';
+import React from 'react';
 import type { User } from 'api';
 import { UserForm } from './modules/UserForm';
+import { UsersList } from './components/UsersList';
 
 const users: User[] = [
     {
@@ -24,23 +20,7 @@ export function UsersPage() {
     return (
         <main>
             <UserForm />
-            <List aria-label="Список пользователей">
-                {users.map((user) => (
-                    <ListItem
-                        key={user.id}
-                        secondaryAction={
-                            <Button
-                                size="large"
-                                aria-label={`Удалить пользователя ${user.name}`}>
-                                <PersonRemoveIcon />
-                            </Button>
-                        }>
-                        <ListItemText
-                            primary={user.name}
-                            secondary={user.group} />
-                    </ListItem>
-                ))}
-            </List>
+            <UsersList users={users} />
         </main>
     );
 }
