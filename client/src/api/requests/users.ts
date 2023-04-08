@@ -1,7 +1,9 @@
 import { useRequest, useRequestLazy } from '../hooks/useRequest';
 import { instance } from '../instance';
 import { User } from '../schema';
-import { TRequestParams } from '../types';
+import { TRequestParams, TRequestService } from '../types';
+
+export type UsersRequestService = TRequestService<{}, User[]>;
 
 function users(params: TRequestParams<{}>) {
     return instance.get<User[]>('users', { ...params.config });

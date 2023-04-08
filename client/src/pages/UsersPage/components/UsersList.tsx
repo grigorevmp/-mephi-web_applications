@@ -1,27 +1,32 @@
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import LinearProgress from '@mui/material/LinearProgress';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import * as React from 'react';
-import type { User } from 'api';
+import { DataContext } from '../context/DataContext';
 
-type UsersListProps = {
-    users: User[];
-    loading?: boolean;
-}
-
-export function UsersList(props: UsersListProps) {
-    const { users, loading } = props;
+export function UsersList() {
+    const { usersService } = React.useContext(DataContext)
+    const { data, loading } = usersService;
 
     if (loading) {
         return <LinearProgress color="inherit" />;
     }
 
+    if (!data?.length) {
+        return (
+            <Box>
+                Список пользователей пуст
+            </Box>
+        );
+    }
+
     return (
         <List aria-label="Список пользователей">
-            {users.map((user) => (
+            {data.map((user) => (
                 <ListItem
                     key={user.id}
                     secondaryAction={

@@ -1,20 +1,26 @@
 import Stack from '@mui/material/Stack';
 import React from 'react';
-import { useUsers } from 'api';
 import { UserForm } from './modules/UserForm';
 import { UsersList } from './components/UsersList';
+import { DataProvider } from './context/DataContext';
 
-export function UsersPage() {
-    const { data, loading } = useUsers({});
-
+function UsersPage() {
     return (
         <main>
             <Stack spacing="12px">
                 <UserForm />
-                <UsersList
-                    users={data || []}
-                    loading={loading} />
+                <UsersList />
             </Stack>
         </main>
     );
 }
+
+function UsersPageWithContext() {
+    return (
+        <DataProvider>
+            <UsersPage />
+        </DataProvider>
+    );
+}
+
+export { UsersPageWithContext as UsersPage };
