@@ -23,7 +23,7 @@ export type TRequestService<P extends TRequestParams<{}>, R> = {
     data?: R | null;
     loading: boolean;
     error?: AxiosError<TRequestError, P['input']> | Error | null;
-    fetch: (params: P) => Promise<void>;
+    fetch: (params: P) => Promise<TRequestService<P, R>>;
     fetched: boolean;
     called: boolean;
 };

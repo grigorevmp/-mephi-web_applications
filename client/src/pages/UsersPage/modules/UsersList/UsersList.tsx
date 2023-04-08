@@ -21,7 +21,8 @@ export function UsersList() {
             if (!fetchedRef.current) {
                 fetchedRef.current = fetched;
             }
-        }, [fetched]
+        },
+        [fetched]
     )
 
     React.useEffect(

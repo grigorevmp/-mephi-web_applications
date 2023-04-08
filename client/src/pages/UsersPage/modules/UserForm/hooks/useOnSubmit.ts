@@ -10,24 +10,16 @@ export function useOnSubmit() {
 
     const onSubmit: FormikConfig<TFormValues>['onSubmit'] = React.useCallback(
         async (values) => {
-            await userCreateService.fetch({
+            const { data } = await userCreateService.fetch({
                 input: values
             });
-        },
-        []
-    )
 
-    React.useEffect(
-        () => {
-            if (userCreateService.data) {
-                usersService.fetch({});
+            if (data) {
+                usersService.fetch({})
             }
         },
-        [
-            userCreateService.data,
-            usersService.fetch
-        ]
-    );
+        [userCreateService.fetch, usersService.fetch]
+    )
 
     return {
         onSubmit,

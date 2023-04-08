@@ -11,22 +11,46 @@ export function useRequestLazy<P extends TRequestParams<{}>, R>(request: TReques
 
     const fetch: TRequestService<P, R>['fetch'] = React.useCallback(
         async (params: P) => {
+            let _data = null;
+            let _error = null;
+            let _fetched = false;
+            let _called = true;
+            let _loading = true;
+
             try {
-                setData(null);
-                setError(null);
-                setFetched(false);
-                setCalled(true);
-                setLoading(true);
-                setData((await request(params)).data);
+                setData(_data);
+                setError(_error);
+                setFetched(_fetched);
+                setCalled(_called);
+                setLoading(_loading);
+
+                const result = await request(params);
+                _data = result.data;
+
+                setData(_data);
             } catch (error) {
                 if (error instanceof AxiosError) {
-                    setError(error);
+                    _error = error;
                 } else {
-                    setError(new Error('Произошла непредвиденная ошибка'));
+                    _error = new Error('Произошла непредвиденная ошибка');
                 }
+
+                setError(_error);
             } finally {
-                setLoading(false);
-                setFetched(true);
+                _loading = false;
+                _fetched = true;
+
+                setLoading(_loading);
+                setFetched(_fetched);
+            }
+
+            return {
+                data: _data,
+                loading: _loading,
+                error: _error,
+                fetch,
+                fetched: _fetched,
+                called: _called,
             }
         },
         [request]
@@ -42,19 +66,20 @@ export function useRequestLazy<P extends TRequestParams<{}>, R>(request: TReques
     };
 }
 
-type UseRequestProps<P extends TRequestParams<{}>, R> = {
+type UseRequestParams<P extends TRequestParams<{}>, R> = {
     service: TRequestService<P, R>;
     params: P;
 };
 
-export function useRequest<P extends TRequestParams<{}>, R>({ service, params }: UseRequestProps<P, R>) {
-    React.useEffect(() => {
-        async function fetch() {
-            await service.fetch(params);
-        }
-
-        fetch();
-    }, []);
+export function useRequest<P extends TRequestParams<{}>, R>(
+    { service, params }: UseRequestParams<P, R>
+) {
+    React.useEffect(
+        () => {
+            service.fetch(params)
+        },
+        []
+    );
 
     return service;
 }
