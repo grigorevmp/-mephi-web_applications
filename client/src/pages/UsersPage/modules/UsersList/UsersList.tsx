@@ -6,17 +6,38 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import * as React from 'react';
-import { DataContext } from '../context/DataContext';
+import { User } from 'api';
+import { DataContext } from '../../context/DataContext';
 
 export function UsersList() {
     const { usersService } = React.useContext(DataContext)
-    const { data, loading } = usersService;
+    const { data, loading, fetched } = usersService;
 
-    if (loading) {
+    const fetchedRef = React.useRef(false);
+    const [users, setUsers] = React.useState<User[] | null>(null);
+
+    React.useEffect(
+        () => {
+            if (!fetchedRef.current) {
+                fetchedRef.current = fetched;
+            }
+        }, [fetched]
+    )
+
+    React.useEffect(
+        () => {
+            if (fetched) {
+                setUsers(data || null);
+            }
+        },
+        [fetched, data]
+    )
+
+    if (!fetchedRef.current && loading) {
         return <LinearProgress color="inherit" />;
     }
 
-    if (!data?.length) {
+    if (!users?.length) {
         return (
             <Box>
                 Список пользователей пуст
@@ -26,7 +47,7 @@ export function UsersList() {
 
     return (
         <List aria-label="Список пользователей">
-            {data.map((user) => (
+            {users.map((user) => (
                 <ListItem
                     key={user.id}
                     secondaryAction={

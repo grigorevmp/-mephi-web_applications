@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import React from 'react';
 import { UserForm } from './modules/UserForm';
-import { UsersList } from './components/UsersList';
+import { UsersList } from './modules/UsersList';
 import { DataProvider } from './context/DataContext';
 
 function UsersPage() {
