@@ -6,35 +6,14 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import * as React from 'react';
-import { User } from 'api';
-import { DataContext } from '../../context/DataContext';
+import { useOnDelete } from './hooks/useOnDelete';
+import { useUsers } from './hooks/useUsers';
 
 export function UsersList() {
-    const { usersService } = React.useContext(DataContext)
-    const { data, loading, fetched } = usersService;
+    const { users, loading } = useUsers();
+    const { onDelete } = useOnDelete();
 
-    const fetchedRef = React.useRef(false);
-    const [users, setUsers] = React.useState<User[] | null>(null);
-
-    React.useEffect(
-        () => {
-            if (!fetchedRef.current) {
-                fetchedRef.current = fetched;
-            }
-        },
-        [fetched]
-    )
-
-    React.useEffect(
-        () => {
-            if (fetched) {
-                setUsers(data || null);
-            }
-        },
-        [fetched, data]
-    )
-
-    if (!fetchedRef.current && loading) {
+    if (loading) {
         return <LinearProgress color="inherit" />;
     }
 
@@ -53,7 +32,9 @@ export function UsersList() {
                     key={user.id}
                     secondaryAction={
                         <Button
+                            id={String(user.id)}
                             size="large"
+                            onClick={onDelete}
                             aria-label={`Удалить пользователя ${user.name}`}>
                             <PersonRemoveIcon />
                         </Button>

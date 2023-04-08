@@ -1,3 +1,4 @@
+import { HttpStatusCode } from 'axios'
 import type { FormikConfig } from 'formik';
 import * as React from 'react';
 import { useUserCreateLazy } from 'api';
@@ -10,12 +11,24 @@ export function useOnSubmit() {
 
     const onSubmit: FormikConfig<TFormValues>['onSubmit'] = React.useCallback(
         async (values) => {
-            const { data } = await userCreateService.fetch({
-                input: values
-            });
+            try {
+                const { result, error } = await userCreateService.fetch({
+                    input: values
+                });
 
-            if (data) {
-                usersService.fetch({})
+                if (error) {
+                    throw error;
+                }
+
+                if (!result) {
+                    throw new Error('Не удалось запросить список пользователей');
+                }
+
+                if (result.status === HttpStatusCode.Created) {
+                    usersService.fetch({})
+                }
+            } catch (error) {
+                console.error(error);
             }
         },
         [userCreateService.fetch, usersService.fetch]

@@ -15,12 +15,10 @@ export type TRequestParamsWithInput<I> =
 export type TRequest<P extends TRequestParams<{}>, R> =
     (params: P) => Promise<AxiosResponse<R, P['input']>>;
 
-export type TRequestError = {
-    error: string
-};
+export type TRequestError = { error: string };
 
 export type TRequestService<P extends TRequestParams<{}>, R> = {
-    data?: R | null;
+    result?: AxiosResponse<R, P['input']> | null;
     loading: boolean;
     error?: AxiosError<TRequestError, P['input']> | Error | null;
     fetch: (params: P) => Promise<TRequestService<P, R>>;

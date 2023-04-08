@@ -3,7 +3,7 @@ import * as React from 'react';
 import { TRequest, TRequestParams, TRequestService } from '../types';
 
 export function useRequestLazy<P extends TRequestParams<{}>, R>(request: TRequest<P, R>) {
-    const [data, setData] = React.useState<TRequestService<P, R>['data']>(null);
+    const [result, setResult] = React.useState<TRequestService<P, R>['result']>(null);
     const [loading, setLoading] = React.useState<TRequestService<P, R>['loading']>(false);
     const [error, setError] = React.useState<TRequestService<P, R>['error']>(null);
     const [fetched, setFetched] = React.useState<boolean>(false);
@@ -11,23 +11,23 @@ export function useRequestLazy<P extends TRequestParams<{}>, R>(request: TReques
 
     const fetch: TRequestService<P, R>['fetch'] = React.useCallback(
         async (params: P) => {
-            let _data = null;
+            let _result = null;
             let _error = null;
             let _fetched = false;
             let _called = true;
             let _loading = true;
 
             try {
-                setData(_data);
+                setResult(_result);
                 setError(_error);
                 setFetched(_fetched);
                 setCalled(_called);
                 setLoading(_loading);
 
-                const result = await request(params);
-                _data = result.data;
+                _result =
+                    await request(params);
 
-                setData(_data);
+                setResult(_result);
             } catch (error) {
                 if (error instanceof AxiosError) {
                     _error = error;
@@ -45,7 +45,7 @@ export function useRequestLazy<P extends TRequestParams<{}>, R>(request: TReques
             }
 
             return {
-                data: _data,
+                result: _result,
                 loading: _loading,
                 error: _error,
                 fetch,
@@ -57,7 +57,7 @@ export function useRequestLazy<P extends TRequestParams<{}>, R>(request: TReques
     );
 
     return {
-        data,
+        result,
         loading,
         error,
         fetch,
