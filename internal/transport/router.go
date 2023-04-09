@@ -79,7 +79,7 @@ func Init(e *echo.Echo) {
 		return c.JSON(http.StatusOK, exam)
 	})
 
-	e.DELETE("/users/:id", func(c echo.Context) error {
+	e.DELETE("/exam/:id", func(c echo.Context) error {
 		id := c.Param("id")
 		examController.Delete(id)
 		return c.String(http.StatusOK, "deleted")
